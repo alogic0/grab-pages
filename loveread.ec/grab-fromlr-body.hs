@@ -19,8 +19,7 @@ extractBody str =
       contentTree = [z | x@(TagBranch "div" (("class","MsoNormal") : _) y) <- universeTree contentTree1, z <- y ]
 --      contentTree = [x | x@(TagBranch "div" [("class","news")] _) <- universeTree contentTree1]
       content =
-        flattenTree $
-        rmBranchByName "div" contentTree
+        flattenTree $ rmBranchByName "script" $ rmBranchByName "form" contentTree
   in content
 --  in header1 ++ title ++ header2 ++ content ++ footer
 
