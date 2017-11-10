@@ -15,7 +15,7 @@ function get-body () {
 }
 HDR=${BNM}-head.html
 BODY=${BNM}-body.html
-for i in {1..$PGUP}; 
+for i in $(seq 1 $PGUP); 
   do get-body $i;
   cat ${BNM}-${i}-pr.html >> $BODY;
 done 
