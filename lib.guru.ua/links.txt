@@ -1,0 +1,6 @@
+http://lib.guru.ua/PROZA/WOJNOWICH/monument.txt
+http://lib.guru.ua/LEM/automate.txt
+http://lib.guru.ua/LEM/golem_14.txt
+# dushenko
+http://lib.guru.ua/LEM/golem-14.txt
+# bondarev
