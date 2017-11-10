@@ -15,10 +15,12 @@ function get-body () {
 }
 HDR=${BNM}-head.html
 BODY=${BNM}-body.html
+cat /dev/null > $BODY
 for i in $(seq 1 $PGUP); 
   do get-body $i;
   cat ${BNM}-${i}-pr.html >> $BODY;
 done 
 runghc grab-fromlr-head ${BNM}-1-utf8.html > ${BNM}-head.html
 cat $HDR $BODY foot.html > ${BNM}.html
-# rm ${BNM}-*-utf8.html ${BNM}-*-pr.html $HDR $BODY
+rm -v ${BNM}-*-utf8.html ${BNM}-*-pr.html $HDR $BODY
+echo "Your book is: ${BNM}.html"

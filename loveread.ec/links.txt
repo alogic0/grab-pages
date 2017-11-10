@@ -1,2 +1,12 @@
 # Voinovich, Shapka
-http://loveread.ec/read_book.php?id=270&p={1..28}
+# http://loveread.ec/read_book.php?id=270&p={1..28}
+270 28 voinovich_shapka
+# http://loveread.ec/read_book.php?id=53766&p={1..61}
+53766 61 voinovich_pelikan
+2281 71 voinovich_chonkin1
+2253 93 voinovich_chonkin2
+2115 77 voinovich_chonkin3
+18177 95 voinovich_moscow2042
+37642 87 voinovich_scazki
+37884 30 voinovich_2plus1
+2277 88 voinovich_monument
