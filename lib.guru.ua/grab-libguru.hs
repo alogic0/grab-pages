@@ -7,7 +7,7 @@ import Text.HTML.TagSoup.Tree
 
 extractBody :: String -> [Tag String]
 extractBody str =
-  let uniTree = universeTree (parseTree str)
+  let uniTree = (universeTree . tagTree . canonicalizeTags . parseTags) str
       title = flattenTree [x | x@(TagBranch "title" _ _) <- uniTree]
       contentTree1 = [x | x@(TagBranch "div" [("id","left")] _) <- uniTree]
       contentTree = [x | x@(TagBranch "div" [("class","news")] _) <- universeTree contentTree1]
@@ -20,6 +20,7 @@ main = do
   hSetEncoding stdout utf8
   hSetEncoding stderr utf8
   let infile = args !! 0
+--  error $ "First argument: " ++ infile
   withFile
     infile
     ReadMode
