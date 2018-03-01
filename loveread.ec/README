@@ -1,0 +1,5 @@
+Download books using this:
+
+  ./get-fromlr-fast.sh 270 28 voinovich_shapka
+
+Where parameters are taken from the `links.txt`.

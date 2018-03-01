@@ -4,6 +4,9 @@
 IDB=$1
 PGUP=$2
 BNM=$3
+mkdir $BNM
+cp foot.html $BNM
+cd $BNM
 function get-body () {
   PGN=$1
   SRC=${BNM}-$PGN.html
@@ -22,5 +25,5 @@ for i in $(seq 1 $PGUP);
 done 
 runghc grab-fromlr-head ${BNM}-1-utf8.html > ${BNM}-head.html
 cat $HDR $BODY foot.html > ${BNM}.html
-rm -v ${BNM}-*-utf8.html ${BNM}-*-pr.html $HDR $BODY
+## rm -v ${BNM}-*-utf8.html ${BNM}-*-pr.html $HDR $BODY
 echo "Your book is: ${BNM}.html"
