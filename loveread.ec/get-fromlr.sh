@@ -14,7 +14,7 @@ function get-body () {
   DST=${SRC%.*}-pr.html
   wget -nc -O $SRC 'http://loveread.ec/read_book.php?id='${IDB}'&p='${PGN}
   iconv -f cp1251 -t utf-8 < $SRC > $FN && echo $FN && rm $SRC
-  runghc grab-fromlr-body $FN > $DST && echo "Out: $DST"
+  runghc grab-fromlr-2 $FN > $DST && echo "Out: $DST"
 }
 HDR=${BNM}-head.html
 BODY=${BNM}-body.html

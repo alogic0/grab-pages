@@ -1,9 +1,8 @@
 #!/bin/bash
 
-## echo "Usage: $0 270 28 voinovich_shapka"; exit
+## echo "Usage: $0 270 voinovich_shapka"; exit
 IDB=$1
-PGUP=$2
-BNM=$3
+BNM=$2
 function get-body () {
   PGN=$1
   SRC=${BNM}-$PGN.html
@@ -17,10 +16,12 @@ HDR=${BNM}-head.html
 BODY=${BNM}-body.html
 
 TMP="${BNM}-${IDB}"
-mkdir "$TMP" || exit 1
+mkdir $TMP || exit 1
 cd "$TMP" || exit 1
 cat /dev/null > $BODY
-for i in $(seq 1 $PGUP); 
+get-body 1;
+PGUP=$(../get-numpages ${BNM}-1-utf8.html || exit 1)
+for i in $(seq 2 $PGUP); 
   do get-body $i;
   cat ${BNM}-${i}-pr.html >> $BODY;
 done 

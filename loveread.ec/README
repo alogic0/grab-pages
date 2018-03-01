@@ -2,4 +2,9 @@ Download books using this:
 
   ./get-fromlr-fast.sh 270 28 voinovich_shapka
 
-Where parameters are taken from the `links.txt`.
+where arguments are: booknumber on the site, num of pages, how to name the book.
+Or use this script, which will guess by itself the number of pages.
+
+  ./get-fromlr-smart.sh 33951 azimov_second-academy  
+
+Look for parameters into the `links.txt`.

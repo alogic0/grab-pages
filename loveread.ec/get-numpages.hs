@@ -4,11 +4,14 @@ import System.Environment
 import System.IO
 import Text.HTML.TagSoup
 import Text.HTML.TagSoup.Tree
+import Data.List
+import Data.Char (isDigit)
+import Control.Monad (when)
 
 extractBody :: String -> [Tag String]
 extractBody str =
   let uniTree = (universeTree . parseTree) str
-      title = flattenTree [x | x@(TagBranch "title" _ _) <- uniTree]
+--      title = flattenTree [x | x@(TagBranch "title" _ _) <- uniTree]
 --      contentTree1 = [x | x@(TagBranch "div" [("id","left")] _) <- uniTree]
 --      contentTree = [x | x@(TagBranch "body" _  _) <- uniTree]
       contentTree1 =
@@ -16,15 +19,12 @@ extractBody str =
         | x@(TagBranch "td" [("align", "center"), ("valign", "top"), ("class", "tb_read_book")] _) <-
             uniTree
         ]
-      contentTree = [z | x@(TagBranch "div" (("class","MsoNormal") : _) y) <- universeTree contentTree1, z <- y ]
+      navTree = [z | x@(TagBranch "div" (("class","navigation") : _) y) <- universeTree contentTree1, z <- y ]
 --      contentTree = [x | x@(TagBranch "div" [("class","news")] _) <- universeTree contentTree1]
       content =
-        flattenTree $
-        rmBranchByNameAtr "div" ("class", "navigation") $
-        rmBranchByName "ul" $
-        rmBranchByName "form" $ rmBranchByName "script" contentTree
---  in content
-  in header1 ++ title ++ header2 ++ content ++ footer
+        flattenTree $ rmBranchByName "script" $ rmBranchByName "form" navTree
+  in content
+--  in header1 ++ title ++ header2 ++ content ++ footer
 
 main :: IO ()
 main = do
@@ -39,7 +39,11 @@ main = do
     (\handle -> do
        hSetEncoding handle utf8
        content <- hGetContents handle
-       hPutStr stdout $ renderTags $ extractBody content
+       let links1 = filter (isPrefixOf "read_book") $ map (fromAttrib "href")
+                    $ filter isTagOpen $ extractBody content
+       when (length links1 < 1) $ error "Check site for \"read_book.php\" links"
+       let nums = (map (read . reverse . takeWhile isDigit . reverse) links1) :: [Int]
+       hPutStrLn stdout $ show $ last $ sort nums
     )
 
 header1 :: [Tag String]
