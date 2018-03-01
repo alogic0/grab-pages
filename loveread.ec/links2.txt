@@ -1,1 +1,14 @@
 1725 lem_rasledovanie
+33951 azimov_second-academy
+270 voinovich_shapka
+53766 voinovich_pelican
+2281 voinovich_chonkin1
+2253 voinovich_chonkin2
+2115 voinovich_chonkin3
+18177 voinovich_moscow2042
+37642 voinovich_scazki
+37884 voinovich_2plus1
+2277 voinovich_monument
+21726 lem_solaris
+21721 lem_zamok
+45849 hadfield_astroguide

@@ -30,7 +30,7 @@ get-body 1;
 PGUP=$(${DIR}/get-numpages ${BNM}-1-utf8.html || exit 1)
 echo Pages: $PGUP
 echo "dir $(pwd)"; echo press any key ...; read zz
-for i in $(seq 2 $PGUP); 
+for i in $(seq 1 $PGUP); 
   do get-body $i;
   cat ${BNM}-${i}-pr.html >> $BODY;
 done 
